@@ -47,9 +47,6 @@ buildNumber.properties
 *.ipr
 out/
 
-# VS Code
-.vscode/
-
 # Azure Functions
 local.settings.json
 bin/
