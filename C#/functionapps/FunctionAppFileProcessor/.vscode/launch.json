@@ -3,10 +3,18 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Attach to .NET Functions",
+      "name": "Debug Azure Functions",
       "type": "coreclr",
-      "request": "attach",
-      "processId": "${command:azureFunctions.pickProcess}"
+      "request": "launch",
+      "preLaunchTask": "func: host start",
+      "program": "${workspaceFolder}/bin/Debug/net8.0/FunctionAppFileProcessor.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "stopAtEntry": false,
+      "env": {
+        "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated"
+      },
+      "console": "internalConsole"
     }
   ]
 }

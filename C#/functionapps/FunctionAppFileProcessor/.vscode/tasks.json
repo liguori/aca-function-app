@@ -30,39 +30,32 @@
       "problemMatcher": "$msCompile"
     },
     {
-      "label": "clean release",
-      "command": "dotnet",
-      "args": [
-        "clean",
-        "--configuration",
-        "Release",
-        "/property:GenerateFullPaths=true",
-        "/consoleloggerparameters:NoSummary"
-      ],
-      "type": "process",
-      "problemMatcher": "$msCompile"
-    },
-    {
-      "label": "publish",
-      "command": "dotnet",
-      "args": [
-        "publish",
-        "--configuration",
-        "Release",
-        "/property:GenerateFullPaths=true",
-        "/consoleloggerparameters:NoSummary"
-      ],
-      "type": "process",
-      "dependsOn": "clean release",
-      "problemMatcher": "$msCompile"
-    },
-    {
       "type": "func",
       "label": "func: host start",
       "command": "host start",
-      "problemMatcher": "$func-dotnet",
+      "problemMatcher": [
+        {
+          "pattern": [
+            {
+              "regexp": ".",
+              "file": 1,
+              "location": 2,
+              "message": 3
+            }
+          ],
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": "^.*Initializing function HTTP routes.*$",
+            "endsPattern": "^.*Worker process started and initialized.*$"
+          }
+        }
+      ],
       "isBackground": true,
-      "dependsOn": "build"
+      "dependsOn": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
     }
   ]
 }
